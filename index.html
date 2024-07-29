@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="健康堂薬局は、地域の皆様の健康を20年以上サポートしてきた信頼できる薬局です。処方箋調剤、健康相談、在宅医療サポートなど、幅広いサービスを提供しています。">
+    <title>健康堂薬局 - あなたの町の信頼できる薬局</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --primary-color: #005a87;
+            --secondary-color: #4a90e2;
+            --accent-color: #ff6b6b;
+            --background-color: #f5f7fa;
+            --text-color: #333;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        .hero {
+            background-image: url('./fv.png');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+        .section {
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .section h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .staff-grid, .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .staff-member, .service-item {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--background-color);
+            border-radius: 5px;
+        }
+        .staff-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+        }
+        button:hover {
+            background-color: var(--primary-color);
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .map-container {
+            height: 300px;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        .contact-info {
+            margin-top: 2rem;
+        }
+        #menu-toggle {
+            display: none;
+        }
+        .menu-button-container {
+            display: none;
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu-button,
+        .menu-button::before,
+        .menu-button::after {
+            display: block;
+            background-color: #fff;
+            position: absolute;
+            height: 4px;
+            width: 30px;
+            transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 2px;
+        }
+        .menu-button::before {
+            content: '';
+            margin-top: -8px;
+        }
+        .menu-button::after {
+            content: '';
+            margin-top: 8px;
+        }
+        #menu-toggle:checked + .menu-button-container .menu-button::before {
+            margin-top: 0px;
+            transform: rotate(405deg);
+        }
+        #menu-toggle:checked + .menu-button-container .menu-button {
+            background: rgba(255, 255, 255, 0);
+        }
+        #menu-toggle:checked + .menu-button-container .menu-button::after {
+            margin-top: 0px;
+            transform: rotate(-405deg);
+        }
+
+        /* タブレット用スタイル */
+        @media (max-width: 1024px) {
+            .container {
+                width: 95%;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .staff-grid, .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* スマートフォン用スタイル */
+        @media (max-width: 768px) {
+            .menu-button-container {
+                display: flex;
+            }
+            nav ul {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                flex-direction: column;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                display: none;
+                background-color: var(--primary-color);
+            }
+            #menu-toggle:checked ~ nav ul {
+                display: flex;
+            }
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            nav ul li a {
+                padding: 1rem;
+                display: block;
+            }
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            .staff-grid, .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .staff-member, .service-item {
+                padding: 10px;
+            }
+            button {
+                width: 100%;
+            }
+            table {
+                font-size: 0.9rem;
+            }
+            th, td {
+                padding: 5px;
+            }
+        }
+								.access-title {
+									margin: 16px 0;
+								}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>健康堂薬局</h1>
+                <input id="menu-toggle" type="checkbox" aria-label="メニュー切り替え" />
+                <label class='menu-button-container' for="menu-toggle">
+                    <div class='menu-button'></div>
+                </label>
+            </div>
+            <nav aria-label="メインナビゲーション">
+                <ul>
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#about">当薬局について</a></li>
+                    <li><a href="#services">サービス案内</a></li>
+                    <li><a href="#staff">スタッフ紹介</a></li>
+                    <li><a href="#news">お知らせ</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero" aria-label="ヒーローセクション">
+            <h2>あなたの健康をサポートする、地域に根ざした薬局</h2>
+        </section>
+
+        <section id="about" class="section container" aria-label="当薬局について">
+            <h2>当薬局について</h2>
+            <p>健康堂薬局は、地域の皆様の健康を守るために20年以上にわたりサービスを提供してきました。私たちは、最新の医薬品知識と親身な対応で、皆様の健康的な生活をサポートいたします。</p>
+            <p>当薬局では、経験豊富な薬剤師が常駐し、お薬の調剤はもちろん、健康相談や在宅医療サポートなど、幅広いサービスを提供しています。地域の皆様の健康を第一に考え、安心して相談できる場所を目指しています。</p>
+        </section>
+
+        <section id="services" class="section container" aria-label="サービス案内">
+            <h2>サービス案内</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>処方箋調剤</h3>
+                    <p>医師の処方箋に基づいて、正確かつ迅速に薬を調剤します。薬の効果や副作用についても丁寧に説明いたします。お薬手帳の管理も行っており、複数の医療機関からの処方薬の相互作用も確認いたします。</p>
+                </div>
+                <div class="service-item">
+                    <h3>健康相談</h3>
+                    <p>薬や健康に関する不安や疑問にお答えします。生活習慣病の予防や改善、サプリメントの選び方など、様々な健康に関する相談に対応いたします。気軽にご相談ください。</p>
+                </div>
+                <div class="service-item">
+                    <h3>在宅医療サポート</h3>
+                    <p>ご自宅での服薬管理や医療機器の使用方法など、在宅医療をサポートいたします。訪問による薬の配達や、服薬指導も行っております。ご家族の方々へのケア方法のアドバイスも提供しています。</p>
+                </div>
+                <div class="service-item">
+                    <h3>健康食品・衛生用品販売</h3>
+                    <p>品質の良い健康食品や衛生用品を取り揃えています。専門家がお客様の状態に合わせて、最適な商品をアドバイスいたします。季節や年齢に応じた商品もご用意しております。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="staff" class="section container" aria-label="スタッフ紹介">
+            <h2>スタッフ紹介</h2>
+            <div class="staff-grid">
+                <div class="staff-member">
+                    <img src="./staff2.png" alt="薬剤師 山田太郎" width="150" height="150">
+                    <h3>山田太郎</h3>
+                    <p>薬剤師</p>
+                    <p>経験年数：15年</p>
+                    <p>専門：糖尿病療養指導</p>
+                    <p>「患者様一人一人に寄り添った服薬指導を心がけています。」</p>
+                </div>
+                <div class="staff-member">
+                    <img src="./staff3.png" alt="薬剤師 佐藤花子" width="150" height="150">
+                    <h3>佐藤花子</h3>
+                    <p>薬剤師</p>
+                    <p>経験年数：8年</p>
+                    <p>専門：アレルギー疾患</p>
+                    <p>「アレルギーでお悩みの方、ぜひご相談ください。」</p>
+                </div>
+                <div class="staff-member">
+                    <img src="./staff1.png" alt="管理栄養士 鈴木一郎" width="150" height="150">
+                    <h3>鈴木一郎</h3>
+                    <p>管理栄養士</p>
+                    <p>経験年数：10年</p>
+                    <p>専門：栄養指導</p>
+                    <p>「食事と健康の関係について、わかりやすくアドバイスいたします。」</p>
+                </div>
+            </div>
+        </section>
+
+								<section id="news" class="section container">
+									<h2>お知らせ</h2>
+									<div class="news-item">
+													<h3>2024年7月15日</h3>
+													<p>夏季の熱中症対策セミナーを開催します。参加費無料、要予約。</p>
+									</div>
+									<div class="news-item">
+													<h3>2024年6月1日</h3>
+													<p>新型コロナウイルスワクチン接種の予約受付を開始しました。</p>
+									</div>
+									<div class="news-item">
+													<h3>2024年5月10日</h3>
+													<p>店舗改装のため、5月20日〜25日まで臨時休業いたします。</p>
+									</div>
+					</section>
+
+					<section id="contact" class="section container">
+									<h2>お問い合わせ</h2>
+									<form>
+													<label for="name">お名前：</label>
+													<input type="text" id="name" name="name" required>
+													
+													<label for="email">メールアドレス：</label>
+													<input type="email" id="email" name="email" required>
+													
+													<label for="message">メッセージ：</label>
+													<textarea id="message" name="message" rows="5" required></textarea>
+													
+													<button type="submit">送信</button>
+									</form>
+									
+									<div class="contact-info">
+													<h3>営業時間</h3>
+													<table>
+																	<tr>
+																					<th>平日</th>
+																					<td>9:00 - 19:00</td>
+																	</tr>
+																	<tr>
+																					<th>土曜日</th>
+																					<td>9:00 - 17:00</td>
+																	</tr>
+																	<tr>
+																					<th>日曜・祝日</th>
+																					<td>休業</td>
+																	</tr>
+													</table>
+													
+													<h3 class="access-title">アクセス</h3>
+													<p>〒123-4567 東京都○○区△△町1-2-3</p>
+													<p>電話：03-1234-5678</p>
+													<div class="map-container">
+																	<!-- ここに地図を埋め込む（実際のサイトでは Google Maps などを使用） -->
+																	<img src="./map.png" alt="薬局の位置" style="width:100%;height:100%;object-fit:cover;">
+													</div>
+									</div>
+					</section>
+	</main>
+
+	<footer>
+					<div class="container">
+									<p>&copy; 2024 健康堂薬局. All rights reserved.</p>
+									<p><a href="#" style="color:white;">プライバシーポリシー</a> | <a href="#" style="color:white;">サイトマップ</a></p>
+					</div>
+	</footer>
+</body>
+</html>
